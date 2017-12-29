@@ -1,0 +1,132 @@
+import React from "react";
+import axios from "axios";
+import jsonwebtoken from "jsonwebtoken";
+import "../bulma.css";
+import Navbar from "../Components/Navbar";
+import s from "../style.js";
+
+var users = require("../message.json");
+
+const style = {
+  col: {
+    "backgroundColor": "#F9F9F9",
+    "borderRight": "1px solid #DEDEDE",
+  }
+}
+
+class PlayView extends React.Component {
+  constructor(props){
+      super(props);
+      this.state = {
+
+      }
+  }
+
+
+
+  componentWillMount(){
+    this.state.token = localStorage.getItem("token");
+    this.forceUpdate();
+  }
+
+  render(){
+
+    let styles = {
+      chat_container: {
+          height: "100vh",
+          backgroundColor: "#F9F9F9",
+          borderRight: "1px solid #DEDEDE",
+          // paddingLeft: ".75em !important",
+      },
+
+      chat_header: {
+        // height: "80px",
+        height: "8%",
+        backgroundColor: "white",
+        borderBottom: "1px solid #DEDEDE",
+      },
+      chat_channel_wrapper: {
+        maxHeight: "100%",
+        height: "80%",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        flexGrow: "1",
+      },
+          chat_channel: {
+            display: "flex",
+            flexDirection: "column",
+            padding: "10px",
+            overflowY: "scroll",
+          },
+
+      chat_footer: {
+        // height: "80px",
+        height: "12%",
+        backgroundColor: "white",
+        display: "flex",
+        flexDirection: "column",
+        borderTop: "1px solid #DEDEDE"
+      },
+          chat_footer_inputs: {
+            padding: "17px",
+          },
+    }
+
+    axios.get("/api/verify");
+    return(
+      <div>
+        <div className="columns">
+          <div className="column is-2 is-fullheight">
+            <div style={styles.chat_container}>
+              <div style={styles.chat_header} className="has-text-centered">
+                <div className="">
+                  <p className="">ENGLISH CHANNEL</p>
+                </div>
+              </div>
+
+              <div style={styles.chat_channel_wrapper}>
+                <div style={styles.chat_channel}>
+                  {
+                    users.map(player => {
+                      return(
+                        <div key={player.id}>
+                          <p><span className="tag is-dark is-small">Member</span> <b>{player.first_name}:</b> {player.message}</p>
+                          <br />
+                        </div>
+                      )
+                    })
+                  }
+                </div>
+              </div>
+
+              <div style={styles.chat_footer}>
+                <div style={styles.chat_footer_inputs}>
+                  <div>
+                    <input type="text" className="input" />
+                  </div>
+                  <br />
+                  <div>
+                    <div className="level">
+                      <div className="level-left">
+                        <p>1,425 Online</p>
+                      </div>
+                      <div className="level-right">
+                        <button className="button">SEND</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="column" style={s.hero}>
+            <Navbar/>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default PlayView;

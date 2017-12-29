@@ -1,0 +1,137 @@
+.__page {
+	height: 100vh;
+	overflow: hidden;
+}
+
+.chat__column {
+	height: 100vh;
+	border-right: 1px solid lightgrey;
+}
+		.chat__header {
+			height: 7%;
+			background-color: white;
+			border-bottom: 1px solid lightgrey;
+		}
+				.chat__header__lang {
+					line-height: 66.42px;
+				}
+
+		.chat__body {
+			height: 82%;
+			background-color: #F7F7FA;
+			overflow-y: scroll;
+		}
+				.chat__body__container {
+					padding: 20px;
+					overflow-wrap: break-word;
+				}
+
+		.chat__footer {
+			height: 11%;
+			background-color: white;
+			border-top: 1px solid lightgrey;
+		}
+				.chat__footer__content {
+					padding: 15px 15px 0px 15px;
+					overflow: hidden;	
+				}
+						.chat__footer__sendButton {
+							margin-top: 4px;
+						}
+
+						.chat__footer__count {
+							line-height: 50px;
+						}
+.main {
+	height: 100vh;
+}
+		.main__r__digital {
+			font-size: 5em;
+			font-family: "Proxima Nova";
+			margin: 12px;
+		}
+		.main__r__digital_2 {
+			font-size: 5em;
+			font-family: "Proxima Nova";
+			margin: 0 12px;
+			color: lightgrey;
+		}
+		.main__r__timebar {
+			height: 11px;
+			background-color: lightgrey;
+			margin: 12px;
+			overflow: hidden;
+		}
+			.main__r__timebar__content {
+				/*width: 100%;*/
+				padding: 12px 0px;
+				height: auto;
+				background-color: #55aa60;
+				/*transition: 0.01s*/
+			}
+		.main__r__boxes {
+			height: 80px;
+			background-color: lightgrey;
+			margin: 12px;
+			overflow: hidden;
+		}
+			.main__r__boxes__container {
+				height: 80px;
+				width: 300%;
+				margin-left: 0px;
+			}
+				.main__r__box {
+					height: 80px;
+					width: 80px;
+					background-color: grey;
+					display: inline-block;
+					color: white;
+					padding: 8px;
+					font-family: "Proxima Nova";
+
+				}
+
+		.main__r__cols {
+			text-align: center;
+		}
+
+				.main__r__entries {
+					height: 48%;
+					overflow-y: hidden;
+					border: 1px solid lightgrey;
+					border-radius: 5px;
+				}
+						.main__r__entries table {
+							overflow-y: scroll;
+						}
+
+				.main__r__cols__button {
+					padding: 10px;
+					margin-bottom: 5px;
+				}
+						.__red {
+							background: linear-gradient(-90deg, #d14242, #da5252);
+							/*background-color: #d14242;*/
+							transition: .1s;
+						}
+								.main__r__cols__button.__red:hover {
+									background-color:;
+								}
+						.__green {
+							background-color: #55aa60;
+							transition: .1s;
+						}
+								.main__r__cols__button.__green:hover {
+									background-color:;
+								}
+
+						.__black {
+							background-color: #000;
+							transition: .1s;
+						}
+								.main__r__cols__button.__black:hover {
+									background-color:;
+								}
+
+
+/*<h1 className="title has-text-weight-bold main__r__digital">{this.state.GAME__TIMELEFT.toFixed(2)}</h1>*/
