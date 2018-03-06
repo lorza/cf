@@ -2,12 +2,12 @@ import React from "react";
 import * as chat from "../Constants/ChatConstants";
 import ChatActions from "../Actions/ChatActions";
 import ChatStore from "../Stores/ChatStore";
-
-import io from "socket.io-client";
 import "../bulma.css";
 import "../css/view__play.css";
-
 import * as uid from "uniqid";
+
+var socket = require("../Socket/socketConnection").default;
+
 var CHANGE = "change_event";
 
 function log(x) {console.log(x)};
@@ -66,8 +66,14 @@ class ChatBar extends React.Component {
             return
         };
 
+        var username;
+        this.user == undefined ? 
+          username = "#unknown" 
+          : 
+          username = JSON.parse(this.user).username
+
         ChatActions.addMessage({
-            username: JSON.parse(this.user).username,
+            username: username,
             message: this.state.chat__message_input,
             message_id: uid("msg-"),
         });  

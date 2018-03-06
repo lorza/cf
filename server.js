@@ -35,9 +35,12 @@ mongoose.Promise = global.Promise;
 require("./server/websockets/chat2.js")();
 
 // Routing
-const api = require("./server/routes/api")(express, jwt, config);
+// const api = require("./server/routes/api")(express, jwt, config);
+// const api2 = require("./server/routes/routes")(express, jwt, config);
+
+require("./server/routes/routes")(app);
+
 const stats = require("./server/routes/stats")(express)
-app.use("/api", api);
 app.use("/stats", stats);
 
 app.get("/", (req, res) => {

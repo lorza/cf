@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
+require("../controllers/AuthenticationController");
+
 // UTILS
 const SALT = 8;
 const log = (m) => {
@@ -48,48 +50,48 @@ module.exports = function(express, jwt, config) {
     })
   });
 
-  router.post("/reg", (req, res) => {
-    // check if user exists
-    User.findOne({username: req.body.username}, (err, user) => {
-      if (user) {
-        res.json({
-          success: false,
-          message: "User Already Exists"
-        })
-        return;
-      }
+  // router.post("/reg", (req, res) => {
+  //   // check if user exists
+  //   User.findOne({username: req.body.username}, (err, user) => {
+  //     if (user) {
+  //       res.json({
+  //         success: false,
+  //         message: "User Already Exists"
+  //       })
+  //       return;
+  //     }
 
-      let newUser = new User({
-        username: req.body.username
-      })
+  //     let newUser = new User({
+  //       username: req.body.username
+  //     })
 
-      newUser.save((err) => {
-        err ? handleErr(err) : null;
-        log("\nUser created successfully \n" + newUser);
-      })
+  //     newUser.save((err) => {
+  //       err ? handleErr(err) : null;
+  //       log("\nUser created successfully \n" + newUser);
+  //     })
 
-      console.log("NEW USER: ", newUser);
+  //     console.log("NEW USER: ", newUser);
 
-      const payload = {
-        user: newUser,
-      };
+  //     const payload = {
+  //       user: newUser,
+  //     };
 
-      if (payload.user.password == "") {
-        payload.user.password = false;
-      }
+  //     if (payload.user.password == "") {
+  //       payload.user.password = false;
+  //     }
 
-      const token = jwt.sign(payload, config.secret, {
-        expiresIn: 43200
-      })
+  //     const token = jwt.sign(payload, config.secret, {
+  //       expiresIn: 43200
+  //     })
 
-      res.json({
-        success: true,
-        message: "User created",
-        token: token,
-        user: newUser
-      });
-    })
-  });
+  //     res.json({
+  //       success: true,
+  //       message: "User created",
+  //       token: token,
+  //       user: newUser
+  //     });
+  //   })
+  // });
 
   router.post("/usercheck", (req, res) => {
     console.log(req.body);

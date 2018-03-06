@@ -10,10 +10,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
-    "jsonwebtoken": "^8.1.0",
+    "generate-password": "^1.4.0",
+    "joi": "^13.1.2",
+    "jsonwebtoken": "^8.1.1",
+    "key-mirror": "^1.0.1",
     "mongoose": "^4.12.3",
+    "passport": "^0.4.0",
     "socket.io": "^2.0.4",
-    "socket.io-client": "^2.0.4"
+    "socket.io-client": "^2.0.4",
+    "uniqid": "^4.1.1"
   }
 }

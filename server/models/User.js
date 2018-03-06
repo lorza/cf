@@ -14,7 +14,6 @@ const userSchema = mongoose.Schema({
   },
   password: {
     type: String,
-    default: "",
   },
   class: {
     type: String,
@@ -32,5 +31,24 @@ const userSchema = mongoose.Schema({
     default: 0,
   }
 });
+
+userSchema.pre("save", function(next) {
+  var user = this;
+
+  bcrypt.genSalt(8, function(err, salt) {
+    if (err) return next(err);
+    
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      user.password = hash;
+      next(); 
+    })
+  })
+})
+
+userSchema.methods.comparePassword = function(password) {
+  bcrypt.compare(password, this.password, function(err, res) {
+    return res; 
+  })
+}
 
 module.exports = mongoose.model("User", userSchema);
